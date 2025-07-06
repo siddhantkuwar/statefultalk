@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 0%; /* Pure black background */
+    --foreground: 0 0% 100%; /* Pure white text */
+
+    --card: 220 15% 10%; /* Very dark cards */
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 142 76% 36%; /* Emerald primary */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 60 9% 18%; /* Dark secondary with slight yellow tint */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 10% 15%; /* Muted dark elements */
+    --muted-foreground: 220 5% 65%;
+
+    --accent: 142 76% 36%; /* Emerald accent */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 142 30% 20%; /* Emerald-tinted borders */
+    --input: 142 30% 20%;
+    --ring: 142 76% 36%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      filter: drop-shadow(0 0 2px theme("colors.emerald.400")) drop-shadow(0 0 5px theme("colors.emerald.500/0.6"));
+      transform: scale(1);
+    }
+    50% {
+      filter: drop-shadow(0 0 5px theme("colors.emerald.300")) drop-shadow(0 0 12px theme("colors.emerald.400/0.8"))
+        drop-shadow(0 0 20px theme("colors.emerald.500/0.5"));
+      transform: scale(1.05);
+    }
+  }
+  .animate-pulse-glow {
+    animation: pulse-glow 3s infinite ease-in-out;
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  .animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: gradient-shift 4s ease infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+      transform: translateY(-10px) rotate(1deg);
+    }
+    66% {
+      transform: translateY(5px) rotate(-1deg);
+    }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes scale-x {
+    0% {
+      transform: scaleX(0);
+    }
+    100% {
+      transform: scaleX(1);
+    }
+  }
+  .animate-scale-x {
+    animation: scale-x 3s infinite ease-in-out;
+  }
+
+  /* Hardware acceleration utilities */
+  .transform-gpu {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .will-change-transform {
+    will-change: transform, opacity, filter;
+  }
+
+  /* Smooth scrolling optimization */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+
+  /* Performance optimized transitions */
+  .transition-optimized {
+    transition-property: transform, opacity, filter;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-duration: 0.8s;
+  }
+
+  /* Optimized hover states */
+  .hover-optimized {
+    transition-property: transform, opacity;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+    will-change: transform, opacity;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-glow,
+  .animate-gradient-shift,
+  .animate-float,
+  .animate-scale-x {
+    animation: none;
+  }
+
+  .transition-optimized,
+  .transition-all {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Performance optimizations for deployed environments */
+@media (max-width: 768px) {
+  .transform-gpu {
+    transform: none;
+  }
+
+  .will-change-transform {
+    will-change: auto;
+  }
+}
