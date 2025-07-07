@@ -40,4 +40,17 @@ cd statefultalk
 npm install
 
 # Run locally
-npm run dev
+npm run dev 
+```
+
+🔑 Set Up Letta API Key
+To enable stateful memory for characters, you'll need a Letta API key:
+
+Visit app.letta.com/api-keys
+
+Sign up or log in to your Letta account
+
+Generate a new API key
+
+Copy and paste it when prompted on the website!
+
