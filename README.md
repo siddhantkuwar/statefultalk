@@ -42,8 +42,9 @@ npm install
 # Run locally
 npm run dev 
 ```
+---
 
-🔑 Set Up Letta API Key
+## 🔑 Set Up Letta API Key
 To enable stateful memory for characters, you'll need a Letta API key:
 
 Visit [Letta's API Keys](https://app.letta.com/api-keys)
